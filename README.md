@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
 direction TB
 
@@ -187,3 +188,4 @@ Flight ..> FlightStatus
 Booking ..> BookingStatus
 Payment ..> PaymentStatus
 Seat ..> SeatClass
+```
