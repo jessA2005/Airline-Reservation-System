@@ -1,5 +1,3 @@
-package UserManager;
-
 public abstract class User {
 
     protected int userId;

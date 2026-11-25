@@ -1,5 +1,3 @@
-package UserManager;
-
 import java.util.Scanner;
 
 public class Admin extends User {
@@ -120,6 +118,7 @@ public class Admin extends User {
                     System.out.println("Invalid selection. Please try again.");
             }
         }
+        scanner.close();
     }
 
     public String getEmployeeId() {

@@ -1,5 +1,3 @@
-package UserManager;
-
 public class StandardPassenger extends Passenger {
 
     public StandardPassenger(

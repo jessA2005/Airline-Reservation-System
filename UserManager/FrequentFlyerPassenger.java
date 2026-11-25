@@ -1,5 +1,3 @@
-package UserManager;
-
 public class FrequentFlyerPassenger extends Passenger {
 
     private int loyaltyPoints;

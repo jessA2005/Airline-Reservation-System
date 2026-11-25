@@ -1,5 +1,3 @@
-package UserManager;
-
 public abstract class Passenger extends User {
 
     protected String passportNumber;
