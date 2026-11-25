@@ -123,9 +123,15 @@ classDiagram
         +displayAirlines() void
     }
 
+    class Comparable {
+        <<interface>>
+        +compareTo(Flight other) int
+    }
+
     Flight <|-- DomesticFlight
     Flight <|-- InternationalFlight
     Flight ..|> Comparable : implements
+
     Airline "1" o-- "0..*" Flight : operates
     Flight --> "1" Airport : origin
     Flight --> "1" Airport : destination
@@ -197,7 +203,6 @@ classDiagram
         -PaymentMethod paymentMethod
         +processPayment(PaymentMethod method) boolean
         +cancelPayment() void
-        +refund() boolean
         +displayInfo() String
     }
 
@@ -206,16 +211,23 @@ classDiagram
         +pay(double amount) boolean
     }
 
+    class Refundable {
+        <<interface>>
+        +refund(double amount) boolean
+    }
+
     class CreditCardPayment {
         -String cardNumber
         -String cardHolderName
         +pay(double amount) boolean
+        +refund(double amount) boolean
     }
 
     class DigitalWalletPayment {
         -String walletProvider
         -String walletAccount
         +pay(double amount) boolean
+        +refund(double amount) boolean
     }
 
     class PaymentManager {
@@ -237,10 +249,16 @@ classDiagram
 
     PaymentMethod <|.. CreditCardPayment
     PaymentMethod <|.. DigitalWalletPayment
+
+    Refundable <|.. CreditCardPayment
+    Refundable <|.. DigitalWalletPayment
+
     Payment --> PaymentMethod : uses
     Payment --> PaymentStatus
-    Booking "1" --> "0..1" Payment : has
     PaymentManager o-- "0..*" Payment : manages
+    PaymentManager ..> Refundable : invokes refund
+
+    Booking "1" --> "0..1" Payment : has
 
     %% TICKET MANAGEMENT
 
