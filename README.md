@@ -32,11 +32,11 @@ classDiagram
         #String phoneNumber
         +viewBookings() void
         +cancelBooking() void
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class StandardPassenger {
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class FrequentFlyerPassenger {
@@ -44,7 +44,7 @@ classDiagram
         -String membershipLevel
         +addPoints(int points) void
         +redeemPoints(int points) boolean
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class UserManager {
@@ -70,7 +70,7 @@ classDiagram
         -String airlineId
         -String name
         -String country
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class Flight {
@@ -80,21 +80,21 @@ classDiagram
         #Airport origin
         #Airport destination
         +calculatePrice() double
-        +displayInfo() String
+        +displayInfo() void
         +compareTo(Flight other) int
     }
 
     class DomesticFlight {
         -double domesticTax
         +calculatePrice() double
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class InternationalFlight {
         -double internationalTax
         -String visaRequirements
         +calculatePrice() double
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class Airport {
@@ -102,7 +102,7 @@ classDiagram
         -String name
         -String city
         -String country
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class FlightManager {
@@ -146,7 +146,7 @@ classDiagram
         -boolean isAvailable
         +reserve() boolean
         +release() void
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class Booking {
@@ -159,7 +159,7 @@ classDiagram
         +confirmBooking() void
         +cancelBooking() void
         +calculateTotal() double
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class BookingManager {
@@ -203,7 +203,7 @@ classDiagram
         -PaymentMethod paymentMethod
         +processPayment(PaymentMethod method) boolean
         +cancelPayment() void
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class PaymentMethod {
@@ -267,7 +267,7 @@ classDiagram
         -TicketStatus status
         -Booking booking
         +cancelTicket() void
-        +displayInfo() String
+        +displayInfo() void
     }
 
     class TicketManager {
