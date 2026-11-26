@@ -1,3 +1,5 @@
+package com.airline.user;
+
 public class StandardPassenger extends Passenger {
 
     public StandardPassenger(
@@ -18,6 +20,7 @@ public class StandardPassenger extends Passenger {
 
     }
 
+    @Override
     public void displayInfo() {
         System.out.println(
                 "Standard Passenger" + this.getProfile() +
