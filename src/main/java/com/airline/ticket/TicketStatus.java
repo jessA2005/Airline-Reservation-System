@@ -1,4 +1,4 @@
-package Project;
+package com.airline.ticket;
 
 public enum TicketStatus {
     VALID,
