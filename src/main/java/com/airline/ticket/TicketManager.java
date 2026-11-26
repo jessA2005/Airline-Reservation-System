@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class TicketManager {
-    private final ArrayList <Ticket> tickets = new ArrayList<>();
+    private final ArrayList<Ticket> tickets = new ArrayList<>();
 
     public Ticket generateTicket(Booking booking) {
         if (booking == null || booking.getFlight() == null || booking.getSeat() == null) {
@@ -12,11 +12,8 @@ public class TicketManager {
         }
 
         Ticket existing = findTicketByBooking(booking);
-        if (existing != null) {
-            if(existing.getStatus() != TicketStatus.CANCELLED) {
-                return existing;
-            }
-            tickets.remove(existing);
+        if (existing != null && existing.getStatus() == TicketStatus.VALID) {
+            return existing;
         }
 
         String ticketId = "TKT-" + UUID.randomUUID();
@@ -38,7 +35,7 @@ public class TicketManager {
     }
 
     public Ticket findTicketByBooking(Booking booking) {
-        if(booking == null) {
+        if (booking == null) {
             return null;
         }
         /*  to read the latest booking of a ticket in case of having multiple tickets with the same booking */
