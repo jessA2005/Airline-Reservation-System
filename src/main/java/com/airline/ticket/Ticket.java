@@ -1,4 +1,4 @@
-package Project;
+package com.airline.ticket;
 
 public class Ticket {
     private String ticketId;
