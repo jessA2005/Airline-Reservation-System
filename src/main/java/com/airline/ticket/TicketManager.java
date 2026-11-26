@@ -1,6 +1,7 @@
-package Project;
+package com.airline.ticket;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class TicketManager {
     private final ArrayList <Ticket> tickets = new ArrayList<>();
@@ -9,7 +10,16 @@ public class TicketManager {
         if (booking == null || booking.getFlight() == null || booking.getSeat() == null) {
             throw new IllegalArgumentException("Booking, flight, and seat must not be null");
         }
-        String ticketId = "TKT-" + booking.getFlight().getFlightId() + "-" + booking.getSeat().getSeatNumber();
+
+        Ticket existing = findTicketByBooking(booking);
+        if (existing != null) {
+            if(existing.getStatus() != TicketStatus.CANCELLED) {
+                return existing;
+            }
+            tickets.remove(existing);
+        }
+
+        String ticketId = "TKT-" + UUID.randomUUID();
         Ticket newTicket = new Ticket(ticketId, booking);
         tickets.add(newTicket);
         return newTicket;
@@ -31,8 +41,10 @@ public class TicketManager {
         if(booking == null) {
             return null;
         }
-        for (Ticket t : tickets) {
-            if (t.getBooking().equals(booking)) {
+        /*  to read the latest booking of a ticket in case of having multiple tickets with the same booking */
+        for (int i = tickets.size() - 1; i >= 0; i--) {
+            Ticket t = tickets.get(i);
+            if (t.getBooking().equals(booking)) {   //equals requires overriding it in Booking
                 return t;
             }
         }
