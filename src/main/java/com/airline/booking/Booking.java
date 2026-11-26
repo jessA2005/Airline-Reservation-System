@@ -76,5 +76,18 @@ public Booking(String bookingId, Passenger passenger, Flight flight, Seat seat) 
         System.out.println("Status: " + status);
         System.out.println("Total: " + totalAmount);
     }
-    
+   public boolean equals(Booking booking) {
+    if (this == booking) {
+        return true;
+    }
+    if (booking == null) {
+        return false;
+    }
+    return Double.compare(booking.totalAmount, totalAmount) == 0
+            && Objects.equals(bookingId, booking.bookingId)
+            && status == booking.status
+            && Objects.equals(passenger, booking.passenger)
+            && Objects.equals(flight, booking.flight)
+            && Objects.equals(seat, booking.seat);
+    }
 }
