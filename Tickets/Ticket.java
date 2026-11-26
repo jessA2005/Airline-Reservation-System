@@ -31,6 +31,6 @@ public Ticket(String ticketId, Booking booking) {
     public void displayInfo() {
         System.out.println("ID: " + ticketId);
         System.out.println("Status: " + status);
-        System.out.println("Booking: " + booking);
+        System.out.println("Booking: " + booking.toString());
     }
 }
