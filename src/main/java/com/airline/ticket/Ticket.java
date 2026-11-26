@@ -2,7 +2,6 @@ package com.airline.ticket;
 
 import com.airline.booking.Booking;
 
-
 public class Ticket {
     private String ticketId;
     private TicketStatus status;
