@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.airline.user.Passenger;
 import com.airline.flight.Flight;
+import com.airline.booking.exception.*;
 
 /**
  *
@@ -39,22 +40,23 @@ public class BookingManager {
     return true;
     }
     
-    public Booking findBooking(String bookingId) {
+    public Booking findBooking(String bookingId) throws BookNotFoundException {
     for(Booking booking: bookings) {
     if(booking.getBookingId().equals(bookingId)) return booking;
     }
-    return null;
+    throw new BookNotFoundException("Booking not found: " + bookingId);
     }
     
-    public boolean confirmBooking(String bookingId) {
+    public boolean confirmBooking(String bookingId) throws BookNotFoundException {
     Booking booking = findBooking(bookingId);
     if(booking == null || booking.getStatus() != BookingStatus.PENDING) return false;
     booking.confirmBooking();
     booking.calculateTotal();
     return true;
+    
     }
     
-    public boolean cancelBooking(String bookingId) {
+    public boolean cancelBooking(String bookingId) throws BookNotFoundException {
         Booking booking = findBooking(bookingId);
     if(booking == null || booking.getStatus() == BookingStatus.CANCELLED) return false;
     
@@ -70,14 +72,21 @@ public class BookingManager {
     }
     
     public void displayPassengerBookings(Passenger passenger) {
+        
+    if (passenger == null) throw new IllegalArgumentException("Passenger cannot be null.");
+     
     boolean found = false;
     
     for(Booking booking: bookings) {
-    if(booking.getPassenger().getPassportumber().equals(passenger.getPassportNumber())) {
+    if(booking.getPassenger().getPassportNumber().equals(passenger.getPassportNumber())) {
     booking.displayInfo();
     found = true;
     }
     }
+    
+    if (!found) {
+    System.out.println("No bookings found.");
+}
     
     
     }
