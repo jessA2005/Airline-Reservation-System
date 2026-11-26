@@ -1,4 +1,6 @@
 package com.airline.ticket;
+import com.airline.booking.Booking;
+
 
 public class Ticket {
     private String ticketId;
@@ -45,6 +47,6 @@ public Ticket(String ticketId, Booking booking) {
     public void displayInfo() {
         System.out.println("ID: " + ticketId);
         System.out.println("Status: " + status);
-        System.out.println("Booking: " + booking.toString());
+        System.out.println("Booking: " + booking.displayInfo());
     }
 }
