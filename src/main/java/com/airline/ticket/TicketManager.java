@@ -1,10 +1,11 @@
 package com.airline.ticket;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class TicketManager {
-    private final ArrayList<Ticket> tickets = new ArrayList<>();
+    private final List<Ticket> tickets = new ArrayList<Ticket>();
 
     public Ticket generateTicket(Booking booking) {
         if (booking == null || booking.getFlight() == null || booking.getSeat() == null) {
