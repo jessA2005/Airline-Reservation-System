@@ -5,7 +5,7 @@ public class DomesticFlight extends Flight {
 
     public DomesticFlight(String flightId, double basePrice, Airport origin, Airport destination, double domesticTax) {
         super(flightId, basePrice, origin, destination);
-        this.domesticTax = domesticTax;
+        setDomesticTax(domesticTax);
     }
 
     public double getDomesticTax() {
@@ -13,6 +13,9 @@ public class DomesticFlight extends Flight {
     }
 
     public void setDomesticTax(double domesticTax) {
+        if (domesticTax < 0) {
+            throw new IllegalArgumentException("Domestic tax cannot be negative.");
+        }
         this.domesticTax = domesticTax;
     }
 

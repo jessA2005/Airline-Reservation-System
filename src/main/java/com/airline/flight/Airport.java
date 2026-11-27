@@ -7,10 +7,10 @@ public class Airport {
     private String country;
 
     public Airport(String airportCode, String name, String city, String country) {
-        this.airportCode = airportCode;
-        this.name = name;
-        this.city = city;
-        this.country = country;
+        setAirportCode(airportCode);
+        setName(name);
+        setCity(city);
+        setCountry(country);
     }
 
     public String getAirportCode() {
@@ -18,6 +18,9 @@ public class Airport {
     }
 
     public void setAirportCode(String airportCode) {
+        if (airportCode == null || airportCode.trim().isEmpty()) {
+            throw new IllegalArgumentException("Airport code cannot be null or empty.");
+        }
         this.airportCode = airportCode;
     }
 
@@ -26,6 +29,9 @@ public class Airport {
     }
 
     public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Airport name cannot be null or empty.");
+        }
         this.name = name;
     }
 
@@ -34,6 +40,9 @@ public class Airport {
     }
 
     public void setCity(String city) {
+        if (city == null || city.trim().isEmpty()) {
+            throw new IllegalArgumentException("Airport city cannot be null or empty.");
+        }
         this.city = city;
     }
 
@@ -42,6 +51,9 @@ public class Airport {
     }
 
     public void setCountry(String country) {
+        if (country == null || country.trim().isEmpty()) {
+            throw new IllegalArgumentException("Airport country cannot be null or empty.");
+        }
         this.country = country;
     }
 

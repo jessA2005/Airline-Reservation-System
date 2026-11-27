@@ -1,13 +1,13 @@
 package com.airline.flight;
 
-public class InternationalFlight extends Flight{
+public class InternationalFlight extends Flight {
     private double internationalTax;
     private String visaRequirements;
 
     public InternationalFlight(String flightId, double basePrice, Airport origin, Airport destination, double internationalTax, String visaRequirements) {
         super(flightId, basePrice, origin, destination);
-        this.internationalTax = internationalTax;
-        this.visaRequirements = visaRequirements;
+        setInternationalTax(internationalTax);
+        setVisaRequirements(visaRequirements);
     }
 
     public double getInternationalTax() {
@@ -15,6 +15,9 @@ public class InternationalFlight extends Flight{
     }
 
     public void setInternationalTax(double internationalTax) {
+        if (internationalTax < 0) {
+            throw new IllegalArgumentException("International tax cannot be negative.");
+        }
         this.internationalTax = internationalTax;
     }
 
@@ -23,8 +26,12 @@ public class InternationalFlight extends Flight{
     }
 
     public void setVisaRequirements(String visaRequirements) {
+        if (visaRequirements == null || visaRequirements.trim().isEmpty()) {
+            throw new IllegalArgumentException("Visa requirements cannot be null or empty.");
+        }
         this.visaRequirements = visaRequirements;
     }
+
     @Override
     public double calculatePrice() {
         return basePrice + internationalTax;
