@@ -91,4 +91,8 @@ public class BookingManager {
     
     }
     
+    public List<Booking> getAllBookings() {
+    return new ArrayList<>(bookings);
+}
+    
 }
