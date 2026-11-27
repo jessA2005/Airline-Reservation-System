@@ -5,6 +5,7 @@
 package com.airline.booking;
 import com.airline.user.Passenger;
 import com.airline.flight.Flight;
+import java.util.UUID;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Booking {
     private final Seat seat;
     
 public Booking(String bookingId, Passenger passenger, Flight flight, Seat seat) {
-    this.bookingId = bookingId;
+    this.bookingId = UUID.randomUUID().toString();
     this.passenger = passenger;
      this.flight = flight;
     this.seat = seat;
@@ -76,18 +77,5 @@ public Booking(String bookingId, Passenger passenger, Flight flight, Seat seat) 
         System.out.println("Status: " + status);
         System.out.println("Total: " + totalAmount);
     }
-   public boolean equals(Booking booking) {
-    if (this == booking) {
-        return true;
-    }
-    if (booking == null) {
-        return false;
-    }
-    return Double.compare(booking.totalAmount, totalAmount) == 0
-            && Objects.equals(bookingId, booking.bookingId)
-            && status == booking.status
-            && Objects.equals(passenger, booking.passenger)
-            && Objects.equals(flight, booking.flight)
-            && Objects.equals(seat, booking.seat);
-    }
+
 }
