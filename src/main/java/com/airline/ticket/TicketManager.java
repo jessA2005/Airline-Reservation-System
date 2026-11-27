@@ -3,6 +3,7 @@ package com.airline.ticket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import com.airline.booking.Booking;
 
 public class TicketManager {
     private final List<Ticket> tickets = new ArrayList<Ticket>();
